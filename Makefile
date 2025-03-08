@@ -4,7 +4,7 @@ SRC_DIR := src
 BUILD_DIR := build
 SOURCES := $(wildcard $(SRC_DIR)/*.c)
 OBJECTS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SOURCES))
-TARGET := $(BUILD_DIR)/app
+TARGET := $(BUILD_DIR)/gitgobbler
 
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(BUILD_DIR)
