@@ -19,9 +19,9 @@ make clean
 build/gitgobbler --add <alias> <repository_link>
 ```
 
-### Show repository with an alias or all repositories
+### Get repository with an alias or all repositories
 ```
-build/gitgobbler --show <alias | all>
+build/gitgobbler --get <alias> | --get
 ```
 
 ### List all aliases
@@ -29,9 +29,9 @@ build/gitgobbler --show <alias | all>
 build/gitgobbler --list
 ```
 
-### Delete an alias
+### Delete an alias or all aliases
 ```
-build/gitgobbler --delete <alias>
+build/gitgobbler --delete <alias> | --delete
 ```
 
 ### Help me
