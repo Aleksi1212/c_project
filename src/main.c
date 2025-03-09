@@ -40,7 +40,11 @@ int main(int argc, char *argv[])
         list(repos, &repos_count);
         break;
     case 3:
-        delete(repos_path, repos, &repos_count, argv[2]);
+        if (argc < 2) {
+            delete(repos_path, repos, &repos_count, NULL);
+        } else {
+            delete(repos_path, repos, &repos_count, argv[2]);
+        }
         break;
     case 4:
         help();
