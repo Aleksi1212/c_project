@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "../include/commands.h"
 #include "../include/utils.h"
@@ -47,6 +48,28 @@ int main(int argc, char *argv[])
         }
         break;
     case 4:
+        if (argc < 4) {
+            printf("Invalid arguments\n");
+            return 1;
+        }
+
+        int count_valid = valid_char_digit(argv[2]);
+        int key_size_valid = valid_char_digit(argv[2]);
+        int value_size_valid = valid_char_digit(argv[3]);
+
+        if (count_valid == 0 || key_size_valid == 0 || value_size_valid == 0) {
+            printf("Invalid arguments\n");
+            return 1;
+        }
+
+        int count = atoi(argv[2]);
+        size_t key_size = strtoull(argv[3], NULL, 10);
+        size_t value_size = strtoull(argv[4], NULL, 10);
+
+        populate(repos_path, repos, &repos_count, count, key_size, value_size);
+
+        break;
+    case 5:
         help();
         break;
     
