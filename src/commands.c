@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "../include/commands.h"
 #include "../include/structs.h"
@@ -38,6 +39,8 @@ void add(const char *repos_path, const Repo *repos, int *repos_count, const char
 
 void get(const Repo *repos, int *repos_count, const char *alias)
 {   
+    bool not_found = true;
+
     if (repos != NULL) {
         for (int i = 0; i < *repos_count; i++)
         {
@@ -47,13 +50,14 @@ void get(const Repo *repos, int *repos_count, const char *alias)
                     return;
                 }
             } else {
+                not_found = false;
                 printf("%s\n", repos[i].link);
             }
         }
-        return;
     }
 
-    printf("Not found\n");
+    if (not_found)
+        printf("Not found\n");
 }
 
 void list(const Repo *repos, int *repos_count)
@@ -66,6 +70,12 @@ void list(const Repo *repos, int *repos_count)
 
 void delete(const char *repos_path, Repo *repos, int *repos_count, const char *alias)
 {
+    if (alias == NULL) {
+        remove(repos_path);
+        printf("Succesfully removed\n");
+        return;
+    }
+
     if (repos != NULL) {
         FILE *file = fopen(repos_path, "w");
 
