@@ -5,8 +5,8 @@
 #include "../include/commands.h"
 #include "../include/structs.h"
 #include "../include/repos.h"
+#include "../include/constants.h"
 
-#define COMMAND_LIST_ARR_SIZE 5
 
 void add(const char *repos_path, const Repo *repos, int *repos_count, const char *alias, const char *link)
 {
