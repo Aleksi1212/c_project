@@ -17,18 +17,58 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    uint32_t crc32_table[256];
+    DiskStore *store = disk_store_new("data/repos.db");
 
-    DiskStore *store = DiskStore_new("data/repos.db", crc32_table);
-    // DiskStore_get(store, "testkey3", crc32_table);
-    printf("%ld\n", store->key_dir->ks.write_pos);
+    const char *test = disk_store_put(store, "key", "val");
+    const char *test1 = disk_store_put(store, "key1", "val1");
+    const char *test2 = disk_store_put(store, "key2", "val2");
+    const char *test3 = disk_store_put(store, "key3", "val3");
 
-    // const char *put_result = DiskStore_put(store, "testkey3", "testval3", crc32_table);
-    // printf("%s\n", put_result);
+    const char *test_get = disk_store_get(store, "key");
+    const char *test_get1 = disk_store_get(store, "key1");
+    const char *test_get2 = disk_store_get(store, "key2");
+    const char *test_get3 = disk_store_get(store, "key3");
+
+    printf("%s\n", test);
+    printf("%s\n", test1);
+    printf("%s\n", test2);
+    printf("%s\n", test3);
+
+    printf("%s\n", test_get);
+    printf("%s\n", test_get1);
+    printf("%s\n", test_get2);
+    printf("%s\n", test_get3);
+
+    const char *keys = disk_store_keys(store);
+    printf("%s\n", keys);
+
+    const char *test_del = disk_store_delete(store, "key");
+    const char *test_del1 = disk_store_delete(store, "key1");
+    const char *test_del2 = disk_store_delete(store, "key2");
+    const char *test_del3 = disk_store_delete(store, "key3");
+
+    printf("%s\n", test_del);
+    printf("%s\n", test_del1);
+    printf("%s\n", test_del2);
+    printf("%s\n", test_del3);
+
+    const char *keys1 = disk_store_keys(store);
+    printf("%s\n", keys1);
 
 
-    const char *test = DiskStore_get(store, "testkey2", crc32_table);
-    // printf("%s\n", test);
+
+    // uint32_t crc32_table[256];
+
+    // DiskStore *store = DiskStore_new("data/repos.db", crc32_table);
+    // // DiskStore_get(store, "testkey3", crc32_table);
+    // printf("%ld\n", store->key_dir->ks.write_pos);
+
+    // // const char *put_result = DiskStore_put(store, "testkey3", "testval3", crc32_table);
+    // // printf("%s\n", put_result);
+
+
+    // const char *test = DiskStore_get(store, "testkey2", crc32_table);
+    // // printf("%s\n", test);
     // printf("test\n");
     // printf("%s\n", store->key_dir->ks.log_size);
     // printf("%s\n", put_result);

@@ -3,6 +3,8 @@
 **University project.** <br> 
 Keeps track of users repositories. Program recods aliases (short names) for long repository links and allows user to view and manage the aliases.
 
+**diskstore.c and serializer.c converted from https://github.com/Aleksi1212/ruby-kv**
+
 ## Building the app
 ```
 make
