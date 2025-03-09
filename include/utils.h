@@ -3,5 +3,8 @@
 
 int get_command_code(const char *command);
 void remove_new_line(char *str);
+void rand_str(char *str, size_t length);
+int valid_char_digit(const char *str);
+
 
 #endif
