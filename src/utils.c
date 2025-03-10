@@ -64,3 +64,10 @@ int valid_char_digit(const char *str)
 
     return 1;
 }
+
+int is_file_extension(const char *file_name, const char *extension)
+{
+    const char *ext = strrchr(file_name, '.');
+
+    return ext != NULL && strcmp(ext, extension) == 0;
+}

@@ -4,6 +4,6 @@
 #ifndef REPO_MANAGER_H
 #define REPO_MANAGER_H
 
-Repo *get_repos(const char *file_path, int *repos_count);
+Repo *get_repos(const char *file_path, int *count);
 
 #endif

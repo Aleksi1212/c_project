@@ -17,9 +17,13 @@ int main(int argc, char *argv[])
     }
 
     int repos_count = 0;
-    char *repos_path = "data/repos.txt";
+    char repos_path[] = "data/repos.txt";
 
     Repo *repos = get_repos(repos_path, &repos_count);
+    if (repos[0].status == 1) {
+        printf("Invalid data file %s. Must be .txt\n", repos_path);
+        return 1;
+    }
 
     switch (get_command_code(argv[1]))
     {

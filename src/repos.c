@@ -9,16 +9,24 @@
 
 Repo *get_repos(const char *file_path, int *count)
 {
-    FILE *file = fopen(file_path, "r");
-    if (file == NULL)
-        return NULL;
-
     int repos_size = 2;
-    int repos_count = 0;
-
     Repo *repos = (Repo *)malloc(repos_size * sizeof(Repo));
 
-    char line[1024];
+    if (is_file_extension(file_path, ".txt") != 1) {
+        repos[0].status = 1;
+        return repos;
+    }
+
+    FILE *file = fopen(file_path, "r");
+    if (file == NULL) {
+        repos[0].status = 0;
+        return repos;
+    }
+
+    int repos_count = 0;
+
+
+    char line[MAX_LINE_SIZE];
     while (fgets(line, sizeof(line), file))
     {
         if (repos_count == repos_size) {
@@ -43,11 +51,13 @@ Repo *get_repos(const char *file_path, int *count)
             token = strtok(NULL, ";");
             token_count++;
         }
+        repos[repos_count].status = 0;
 
         repos_count++;
     }
 
     *count = repos_count;
+    // repos_ex = repos;
     fclose(file);
 
     return repos;

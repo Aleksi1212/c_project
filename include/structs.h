@@ -13,6 +13,7 @@ typedef struct {
 typedef struct {
     char alias[MAX_KEY_SIZE];
     char link[MAX_VALUE_SIZE];
+    int status;
 } Repo;
 
 #endif

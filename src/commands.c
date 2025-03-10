@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/stat.h>
 
 #include "../include/commands.h"
 #include "../include/structs.h"
@@ -10,7 +11,7 @@
 #include "../include/utils.h"
 #include "../include/constants.h"
 
-void add(const char *repos_path, const Repo *repos, int *repos_count, const char *alias, const char *link)
+void add(char *repos_path, const Repo *repos, int *repos_count, const char *alias, const char *link)
 {
     if (strchr(alias, ';') != NULL || strchr(link, ';') != NULL) {
         printf("Invalid alias or link.\n");
@@ -26,6 +27,22 @@ void add(const char *repos_path, const Repo *repos, int *repos_count, const char
             }
         }
     }
+
+    char path_copy[2048];
+    strcpy(path_copy, repos_path);
+
+    char *token = strtok(path_copy, "/");
+    struct stat sb;
+    while (token)
+    {
+        if (is_file_extension(token, ".txt") != 1) {
+            if (stat(token, &sb) != 0) {
+                mkdir(token, 0700);
+            }
+        }
+        token = strtok(NULL, "/");
+    }
+    
 
     FILE *file = fopen(repos_path, "a+");
     if (file == NULL) {
@@ -93,7 +110,7 @@ void delete(const char *repos_path, Repo *repos, int *repos_count, const char *a
     printf("File is empty\n");
 }
 
-void populate(const char* repos_path, const Repo *repos, int *repos_count, int count, size_t key_size, size_t value_size)
+void populate(char* repos_path, const Repo *repos, int *repos_count, int count, size_t key_size, size_t value_size)
 {
     if (key_size > MAX_KEY_SIZE || value_size > MAX_VALUE_SIZE) {
         printf("Key or value size too large.\n");
