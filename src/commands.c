@@ -134,8 +134,8 @@ void help()
     command_list_arr[2].info = "lists all aliases";
     command_list_arr[2].indent = strlen(command_list_arr[2].info) + INDENTATION;
 
-    command_list_arr[3].name = "--delete <alias> | -d <alias>";
-    command_list_arr[3].info = "deletes the given alias";
+    command_list_arr[3].name = "--delete <alias> | -d <alias> | --delete | -d";
+    command_list_arr[3].info = "deletes the given alias or no alias to delete all";
     command_list_arr[3].indent = strlen(command_list_arr[3].info) + INDENTATION;
 
     command_list_arr[4].name = "--populate <count> <key_size> <value_size> | -p <count> <key_size> <value_size>";
