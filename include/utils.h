@@ -6,5 +6,7 @@ void remove_new_line(char *str);
 void rand_str(char *str, size_t length);
 int valid_char_digit(const char *str);
 int is_file_extension(const char *file_name, const char *extension);
+void remove_file_from_dir_string(char *dir);
+void make_dir(const char *dir);
 
 #endif
