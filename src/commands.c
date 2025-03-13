@@ -94,7 +94,7 @@ void delete(const char *repos_path, Repo *repos, int *repos_count, const char *a
 
         for (int i = 0; i < *repos_count; i++) {
             if (strcmp(repos[i].alias, alias) != 0) {
-                fprintf(file, "%s;%s\n", repos[i].alias, repos[i].link);
+                fprintf(file, "%s|%s\n", repos[i].alias, repos[i].link);
             }
         }
         fclose(file);
