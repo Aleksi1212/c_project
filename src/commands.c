@@ -13,7 +13,7 @@
 
 void add(char *repos_path, const Repo *repos, int *repos_count, const char *alias, const char *link)
 {
-    if (strchr(alias, ';') != NULL || strchr(link, ';') != NULL) {
+    if (strchr(alias, '|') != NULL || strchr(link, '|') != NULL) {
         printf("Invalid alias or link.\n");
         return;
     }
@@ -40,7 +40,7 @@ void add(char *repos_path, const Repo *repos, int *repos_count, const char *alia
         return;
     }
 
-    fprintf(file, "%s;%s\n", alias, link);
+    fprintf(file, "%s|%s\n", alias, link);
     fclose(file);
 
     printf("OK\n");

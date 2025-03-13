@@ -40,7 +40,7 @@ int get_repos(const char *file_path, Repo **repos, int *count)
             *repos = temp;
         }
 
-        char *token = strtok(line, ";");
+        char *token = strtok(line, "|");
         int token_count = 0;
 
         while (token != NULL)
@@ -54,7 +54,7 @@ int get_repos(const char *file_path, Repo **repos, int *count)
                 sprintf((*repos)[repos_count].link, token, sizeof((*repos)[repos_count].link));
             }
 
-            token = strtok(NULL, ";");
+            token = strtok(NULL, "|");
             token_count++;
         }
 
