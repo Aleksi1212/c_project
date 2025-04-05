@@ -5,11 +5,14 @@ Keeps track of users repositories. Program recods aliases (short names) for long
 
 ## Building the app
 ```
-make
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
 ```
 ### Clean build
 ```
-make clean
+rm -rf build
 ```
 
 ## Running the app
